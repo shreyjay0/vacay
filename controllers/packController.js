@@ -1,7 +1,7 @@
 const packs = (req,res) => {
     res.status(200).json(
     {
-        status: true,
+        status: 'ok',
         msg: 'Vacay packs'
     }
     )

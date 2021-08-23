@@ -1,7 +1,10 @@
-import nc from 'next-connect'
-import {packs} from '../../../controllers/packController'
+import nextConnect from 'next-connect';
+import {packs} from '../../../controllers/packController';
+import connectDb from '../../../utils/mongodb';
 
-const handler = nc();
+const handler = nextConnect();
+
+connectDb();
 
 handler.get(packs)
 
