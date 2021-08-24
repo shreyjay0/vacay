@@ -1,6 +1,11 @@
-import { Mongoose } from "mongoose";
+import mongoose  from "mongoose";
 
 const PackSchema = new mongoose.Schema({
+    owner: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: false
+    },
     packName: {
         type: String,
         required: [true, "Enter the name"],
@@ -54,6 +59,17 @@ const PackSchema = new mongoose.Schema({
         cleaning: {
             type: Boolean,
             required: true
+        },
+        kitchen: {
+            type: Boolean,
+            required: true
+        },
+        parking: {
+            type: Boolean,
+            required: true
+        },
+        ownRestaurant: {
+            type : Boolean
         }
     }],
     ratings: {
@@ -86,9 +102,46 @@ const PackSchema = new mongoose.Schema({
             }
         }
     ],
+    picstures: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            link: {
+                type: String,
+                required: true
+            },
+        }
+    ],
+    userReviews: [
+        {
+            userId: {
+                type: mongoose.Schema.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            name:{
+                type: String,
+                required: true
+            },
+            review: {
+                type: String,
+                required: true
+            },
+            rating: {
+                type: Number,
+                required: true
+            }            
+        }
+    ], 
     cancellationAllowance: {
         type: Boolean,
         required: true
+    },
+    postDate: {
+        type: Date,
+        default: Date.now
     }
 })
 
